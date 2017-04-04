@@ -1,7 +1,13 @@
 version: '2'
 services:
+  dbdata:
+    image: busybox
+    volumes:
+      - /var/lib/mysql
   db:
     image: mysql:5.7.17
+    volumes_from:
+      - dbdata
     environment:
       - MYSQL_ROOT_PASSWORD=password
       #- MYSQL_ALLOW_EMPTY_PASSWORD

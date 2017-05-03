@@ -1,0 +1,14 @@
+version: '2'
+services:
+  db:
+    image: postgres
+  web:
+    image: heroku-rails/do:1.0
+    ports:
+      - 3000:3000
+    volumes:
+      - "$PWD:/usr/src/app"
+    environment:
+      - DATABASE_URL=postgres://postgres:mysecretpassword@db:5432/postgres
+    depends_on:
+      - db
